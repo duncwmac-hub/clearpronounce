@@ -67,6 +67,10 @@ class AnalyzeResponse(BaseModel):
     words: List[WordResult]
 
 
+class VariantClick(BaseModel):
+    variant: str
+
+
 def _parse_phoneme_set(s: str) -> set[str]:
     """Parse a phoneme_set field like "{b, d, n, æ, ʌ}" into a set."""
     s = (s or "").strip()
@@ -209,6 +213,17 @@ def analyze_text(payload: AnalyzeRequest) -> AnalyzeResponse:
         )
 
     return AnalyzeResponse(words=results)
+
+
+@app.post("/track-variant")
+def track_variant(payload: VariantClick) -> dict:
+    """Very lightweight tracking endpoint for landing-page promise tests.
+
+    For now we just log to stdout; Render will capture this in its logs.
+    """
+    variant = (payload.variant or "").strip() or "unknown"
+    print(f"[variant_click] variant={variant}")  # noqa: T201
+    return {"ok": True}
 
 
 # Serve frontend at same origin when deployed (one host for clearpronounce.com).

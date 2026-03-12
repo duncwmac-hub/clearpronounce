@@ -316,7 +316,14 @@
     <main>
       <div class="layout">
         <section class="panel">
-          <h2>1. Paste your text</h2>
+          <h2>1. Choose what you want help with</h2>
+          <div class="small" style="margin-bottom: 0.75rem;">
+            Pick the option that feels closest to your situation. We’ll still ask for a short English text you actually use.
+          </div>
+          <div class="practice" style="margin-top: 0.5rem; padding-top: 0; border-top: none;">
+            <div id="variant-options" class="practice-options"></div>
+          </div>
+          <h2 style="margin-top: 1.25rem;">2. Paste your text</h2>
           <p class="small">
             Use your phone’s OCR (Google Lens / iOS Live Text) or your
             textbook’s digital edition, then paste the exercise text here.
@@ -397,11 +404,48 @@
       const practicePanel = document.getElementById("practice-panel");
       const practiceContent = document.getElementById("practice-content");
       const practiceStartBtn = document.getElementById("practice-start");
+      const variantOptionsEl = document.getElementById("variant-options");
 
       let lastResults = [];
       const knownPhonemes = new Set();
       let practiceWords = [];
       let practiceIndex = 0;
+
+      // Polish inventory + clearly basic sounds we never want users to tick.
+      const ALWAYS_KNOWN_PHONEMES = new Set([
+        "p",
+        "b",
+        "t",
+        "d",
+        "k",
+        "g",
+        "f",
+        "v",
+        "s",
+        "z",
+        "ʂ",
+        "ʐ",
+        "ɕ",
+        "ʑ",
+        "x",
+        "m",
+        "n",
+        "ɲ",
+        "l",
+        "r",
+        "ts",
+        "dz",
+        "tʂ",
+        "dʐ",
+        "tɕ",
+        "dʑ",
+        "i",
+        "ɨ",
+        "e",
+        "a",
+        "o",
+        "u",
+      ]);
 
       function setStatus(message, isError = false) {
         statusEl.textContent = message;
@@ -424,7 +468,11 @@
       function getSoundsOnPage(words) {
         const set = new Set();
         for (const w of words) {
-          for (const p of phonemesFromUnlockedBy(w.unlockedBy)) set.add(p);
+          for (const p of phonemesFromUnlockedBy(w.unlockedBy)) {
+            if (!ALWAYS_KNOWN_PHONEMES.has(p)) {
+              set.add(p);
+            }
+          }
         }
         return Array.from(set).sort();
       }
@@ -433,7 +481,10 @@
         if (word.alreadyPronounceable) return true;
         const needs = phonemesFromUnlockedBy(word.unlockedBy);
         if (needs.length === 0) return true;
-        return needs.every((p) => known.has(p));
+        // Ignore phonemes that are clearly part of the Polish inventory.
+        return needs.every(
+          (p) => ALWAYS_KNOWN_PHONEMES.has(p) || known.has(p)
+        );
       }
 
       function coveragePct(words, known) {
@@ -582,7 +633,9 @@
             updatePractice(words);
           });
           label.appendChild(cb);
-          label.appendChild(document.createTextNode("/" + p + "/ I already know this"));
+          label.appendChild(
+            document.createTextNode("/" + p + "/ I’m OK with this sound")
+          );
           listEl.appendChild(label);
         }
         pctEl.textContent = coveragePct(words, knownPhonemes) + "%";
@@ -727,6 +780,60 @@ const response = await fetch(apiBase + "/analyze-text", {
 
       analyzeBtn.addEventListener("click", analyze);
       downloadBtn.addEventListener("click", downloadCsv);
+
+      // Track which promise users clicked on.
+      async function trackVariant(variant) {
+        try {
+          await fetch("/track-variant", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ variant }),
+          });
+        } catch (_e) {
+          // Swallow tracking errors; they should never block usage.
+        }
+      }
+
+      // Build and randomize the variant buttons so we can see which promise users pick,
+      // without order bias.
+      const VARIANTS = [
+        {
+          id: "email_meeting",
+          label: "I want to sound clearer in my emails or meetings",
+          icon: "✅",
+        },
+        {
+          id: "top_words",
+          label: "I want to see which words I probably say in a confusing way",
+          icon: "🔍",
+        },
+        {
+          id: "unit_zero",
+          label: "I’m using a textbook/unit and want a quick pronunciation guide",
+          icon: "📘",
+        },
+      ];
+
+      function renderVariantButtons() {
+        const shuffled = shuffle(VARIANTS);
+        variantOptionsEl.innerHTML = "";
+        shuffled.forEach((v) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "secondary";
+          btn.dataset.variant = v.id;
+          btn.textContent = `${v.icon} ${v.label}`;
+          btn.addEventListener("click", () => {
+            trackVariant(v.id);
+            setStatus(
+              "Got it. Paste a short English text you actually use, then click Analyze."
+            );
+          });
+          variantOptionsEl.appendChild(btn);
+        });
+      }
+
+      renderVariantButtons();
     </script>
   </body>
 </html>
