@@ -32,13 +32,17 @@ def strip_stress(phone: str) -> str:
 
 
 def arpabet_to_ipa(arpabet_pron: str) -> str:
+    """Convert ARPABET to IPA. AH0 (unstressed) -> schwa ə; AH1/AH2 -> ʌ."""
     phones = arpabet_pron.split()
     ipa_phones = []
     for p in phones:
         base = strip_stress(p)
-        ipa = ARPABET_TO_IPA.get(base)
+        # Unstressed AH is schwa; stressed AH is strut.
+        if base == "AH" and p.endswith("0"):
+            ipa = "ə"
+        else:
+            ipa = ARPABET_TO_IPA.get(base)
         if ipa is None:
-            # Leave unmapped phones as base in brackets so we can spot them.
             ipa = f"<{base}>"
         ipa_phones.append(ipa)
     return " ".join(ipa_phones)

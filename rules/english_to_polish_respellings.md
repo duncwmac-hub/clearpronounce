@@ -38,7 +38,7 @@ They are deliberately simple and will be refined with context rules and your cor
 | /ɔ/             | o                      |                              |       |
 | /ʊ/             | u                      |                              |       |
 | /u/             | u                      |                              |       |
-| /ʌ/             | a                      |                              | provisional; later introduce a dedicated symbol (likely a with diacritic) to distinguish /ʌ/ |
+| /ʌ/             | â                     |                              | stressed 'a' as in but, cut; special a for /ʌ/ |
 | /ə/             | ə                      |                              | no Polish equivalent; must learn schwa as a new vowel |
 | /ɝ/            | er                     |                              | stressed \"er\" as in bird, word, nurse in rhotic English |
 | /eɪ/            | ej                     |                              |       |

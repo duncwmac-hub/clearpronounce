@@ -33,6 +33,7 @@ app.add_middleware(
 GLOBAL_FREQ: Dict[str, Tuple[int, float]] = {}
 LEXICON: Dict[str, LexEntry] = {}
 RESPELLING_OVERRIDES: Dict[str, str] = {}
+IPA_OVERRIDES: Dict[str, str] = {}
 RESP_RULES = load_respelling_rules()
 
 
@@ -195,16 +196,20 @@ def load_resources_from_disk() -> None:
         else:
             LEXICON = {}
 
-        # Optional respelling overrides (e.g. for testing: clearly → kliyrli).
-        global RESPELLING_OVERRIDES
+        # Optional respelling and IPA overrides (e.g. the → ð ə / ðə for schwa).
+        global RESPELLING_OVERRIDES, IPA_OVERRIDES
         RESPELLING_OVERRIDES = {}
+        IPA_OVERRIDES = {}
         if overrides_path.exists():
             with overrides_path.open(encoding="utf-8", newline="") as f:
                 for row in csv.DictReader(f):
                     w = (row.get("word") or "").strip().lower()
                     r = (row.get("respelling") or "").strip()
+                    ipa_override = (row.get("ipa") or "").strip()
                     if w and r:
                         RESPELLING_OVERRIDES[w] = r
+                    if w and ipa_override:
+                        IPA_OVERRIDES[w] = ipa_override
 
         # Enrich lexicon entries with pronounceability info vs Polish inventory.
         polish_inventory = _load_polish_inventory(polish_inventory_path)
@@ -242,7 +247,7 @@ def analyze_text(payload: AnalyzeRequest) -> AnalyzeResponse:
     results: List[WordResult] = []
     for word, local_count, rank, freq_pm, score in scored:
         entry = LEXICON.get(word)
-        ipa = entry.ipa if entry else ""
+        ipa = IPA_OVERRIDES.get(word.lower()) or (entry.ipa if entry else "")
         resp = RESPELLING_OVERRIDES.get(word.lower()) or (entry.respelling if entry else "")
         resp_stressed = (
             _generate_stressed_respelling(ipa, entry.cmu_pron)
