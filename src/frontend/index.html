@@ -291,6 +291,9 @@
             textbook’s digital edition, then paste the exercise text here.
             We only use this to derive a word list; the raw text isn’t stored.
           </p>
+          <p class="small">
+            <strong>Tip:</strong> Paste a short English paragraph from a textbook, email, or meeting notes, then click <strong>Analyze</strong>.
+          </p>
           <textarea
             id="input-text"
             placeholder="Paste exercise text here…"
@@ -454,8 +457,8 @@ const response = await fetch(apiBase + "/analyze-text", {
 
           if (!response.ok) {
             const data = await response.json().catch(() => ({}));
-            const detail = data.detail || response.statusText;
-            throw new Error(detail);
+            const detail = data.detail || "";
+            throw new Error(detail || "The server returned an error.");
           }
 
           const data = await response.json();
@@ -473,7 +476,10 @@ const response = await fetch(apiBase + "/analyze-text", {
           }
         } catch (err) {
           console.error(err);
-          setStatus(`Error: ${err.message || "Unable to analyze text."}`, true);
+          setStatus(
+            "Something went wrong talking to the ClearPronounce server. Please check your connection and try again.",
+            true
+          );
           downloadBtn.disabled = true;
         } finally {
           analyzeBtn.disabled = false;
