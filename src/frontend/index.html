@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ClearPronounce – Pronunciation-aware vocab for Polish learners</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="https://clearpronounce.com/" />
+    <meta property="og:url" content="https://clearpronounce.com/" />
+    <meta property="og:title" content="ClearPronounce – Pronunciation-aware vocab for Polish learners" />
+    <meta property="og:description" content="Paste text from your textbook or worksheet to get a pronunciation-aware vocabulary list for Polish learners of English." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f8f6f3;
+        --card: #ffffff;
+        --ink: #1c1917;
+        --ink-muted: #57534e;
+        --accent: #0d9488;
+        --accent-hover: #0f766e;
+        --accent-soft: rgba(13, 148, 136, 0.12);
+        --coverage-bg: #f0fdfa;
+        --coverage-border: #99f6e4;
+        --support-bg: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%);
+        --radius: 12px;
+        --radius-sm: 8px;
+        --shadow: 0 1px 3px rgba(28, 25, 23, 0.06);
+        --shadow-card: 0 4px 12px rgba(28, 25, 23, 0.06);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        padding: 1.25rem 1.5rem 1.5rem;
+        background: var(--card);
+        border-bottom: 1px solid rgba(28, 25, 23, 0.08);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      header p {
+        margin: 0.4rem 0 0;
+        font-size: 0.9375rem;
+        color: var(--ink-muted);
+        max-width: 42rem;
+      }
+      main {
+        padding: 1.5rem;
+        max-width: 960px;
+        margin: 0 auto;
+        width: 100%;
+        flex: 1;
+      }
+      .layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      @media (min-width: 900px) {
+        .layout {
+          flex-direction: row;
+        }
+      }
+      .panel {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-card);
+        padding: 1.25rem 1.5rem;
+        flex: 1;
+        min-width: 0;
+        border: 1px solid rgba(28, 25, 23, 0.06);
+      }
+      .panel h2 {
+        margin-top: 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      textarea {
+        width: 100%;
+        min-height: 200px;
+        padding: 0.875rem 1rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid rgba(28, 25, 23, 0.14);
+        resize: vertical;
+        font-family: inherit;
+        font-size: 0.9375rem;
+        line-height: 1.5;
+        color: var(--ink);
+        background: var(--card);
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      textarea::placeholder {
+        color: var(--ink-muted);
+        opacity: 0.8;
+      }
+      textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+      }
+      .controls {
+        margin-top: 0.875rem;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      button {
+        border: none;
+        border-radius: 999px;
+        padding: 0.6rem 1.25rem;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: inherit;
+        transition: background-color 0.15s ease, transform 0.1s ease;
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+      button.primary {
+        background: var(--accent);
+        color: #ffffff;
+      }
+      button.primary:hover:not(:disabled) {
+        background: var(--accent-hover);
+      }
+      button.secondary {
+        background: rgba(28, 25, 23, 0.06);
+        color: var(--ink);
+      }
+      button.secondary:hover:not(:disabled) {
+        background: rgba(28, 25, 23, 0.1);
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .status {
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+      .status.error {
+        color: #b91c1c;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.875rem;
+      }
+      thead {
+        background: rgba(28, 25, 23, 0.04);
+      }
+      th,
+      td {
+        padding: 0.5rem 0.625rem;
+        border-bottom: 1px solid rgba(28, 25, 23, 0.08);
+        text-align: left;
+      }
+      th {
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 0.8125rem;
+      }
+      tbody tr {
+        transition: background 0.1s ease;
+      }
+      tbody tr:nth-child(even) {
+        background: rgba(28, 25, 23, 0.02);
+      }
+      tbody tr:hover {
+        background: var(--accent-soft);
+      }
+      .small {
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+      }
+      .coverage-bar {
+        margin: 0.875rem 0;
+        padding: 1rem 1.25rem;
+        background: var(--coverage-bg);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--coverage-border);
+      }
+      .coverage-bar .pct {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+      }
+      .phoneme-list {
+        margin-top: 0.625rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .phoneme-list label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .phoneme-list input {
+        margin: 0;
+        accent-color: var(--accent);
+      }
+      .support {
+        margin-top: 2rem;
+        padding: 1.5rem 1.5rem 1.75rem;
+        background: var(--support-bg);
+        border-radius: var(--radius);
+        border: 1px solid var(--coverage-border);
+        text-align: center;
+      }
+      .support p {
+        margin: 0 0 1rem;
+        font-size: 0.9375rem;
+        color: var(--ink-muted);
+        max-width: 28rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .support a.support-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.65rem 1.5rem;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: var(--accent);
+        border-radius: 999px;
+        text-decoration: none;
+        font-family: inherit;
+        transition: background-color 0.15s ease, transform 0.1s ease;
+        box-shadow: 0 2px 8px rgba(13, 148, 136, 0.35);
+      }
+      .support a.support-btn:hover {
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+      }
+      .support a.support-btn:active {
+        transform: translateY(0);
+      }
+      footer {
+        padding: 1rem 1.5rem;
+        text-align: center;
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+        border-top: 1px solid rgba(28, 25, 23, 0.06);
+        background: var(--card);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ClearPronounce</h1>
+      <p>
+        Paste text from your textbook or worksheet to get a pronunciation-aware
+        vocabulary list for Polish learners.
+      </p>
+    </header>
+    <main>
+      <div class="layout">
+        <section class="panel">
+          <h2>1. Paste your text</h2>
+          <p class="small">
+            Use your phone’s OCR (Google Lens / iOS Live Text) or your
+            textbook’s digital edition, then paste the exercise text here.
+            We only use this to derive a word list; the raw text isn’t stored.
+          </p>
+          <textarea
+            id="input-text"
+            placeholder="Paste exercise text here…"
+          ></textarea>
+          <div class="controls">
+            <button id="analyze-btn" class="primary">Analyze</button>
+            <button id="download-btn" class="secondary" disabled>
+              Download CSV
+            </button>
+            <span id="status" class="status"></span>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>2. Vocab with pronunciation</h2>
+          <p class="small">
+            Ranked by general English frequency, how often it appears in this
+            text, and how strongly it belongs to this topic.
+          </p>
+          <div id="coverage-container" class="coverage-bar" style="display: none;">
+            <div>You can clearly use <span id="coverage-pct" class="pct">0%</span> of these words.</div>
+            <p class="small" style="margin: 0.5rem 0 0 0;">Tick sounds you already know; coverage updates.</p>
+            <div id="phoneme-list" class="phoneme-list"></div>
+          </div>
+          <div id="results-container">
+            <table id="results-table" aria-label="Vocabulary results">
+              <thead>
+                <tr>
+                  <th>Word</th>
+                  <th>IPA</th>
+                  <th>Respelling</th>
+                  <th>Local</th>
+                  <th class="small">Global rank</th>
+                  <th class="small">Score</th>
+                </tr>
+              </thead>
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <section class="support" aria-label="Support ClearPronounce">
+        <p>
+          If ClearPronounce helps you or your students, consider supporting its development.
+          One-time or recurring—every bit helps keep it free for learners.
+        </p>
+        <a href="https://ko-fi.com" target="_blank" rel="noopener noreferrer" class="support-btn">
+          Support ClearPronounce
+        </a>
+      </section>
+    </main>
+    <footer>
+      ClearPronounce · Pronunciation-aware vocab for Polish learners of English
+      · <a href="mailto:duncan@clearpronounce.com" style="color: inherit; text-decoration: underline;">duncan@clearpronounce.com</a>
+    </footer>
+    <script>
+      const analyzeBtn = document.getElementById("analyze-btn");
+      const downloadBtn = document.getElementById("download-btn");
+      const statusEl = document.getElementById("status");
+      const inputEl = document.getElementById("input-text");
+      const tbody = document.getElementById("results-body");
+
+      let lastResults = [];
+      const knownPhonemes = new Set();
+
+      function setStatus(message, isError = false) {
+        statusEl.textContent = message;
+        statusEl.classList.toggle("error", isError);
+      }
+
+      function clearResults() {
+        tbody.innerHTML = "";
+        lastResults = [];
+        knownPhonemes.clear();
+        document.getElementById("coverage-container").style.display = "none";
+        downloadBtn.disabled = true;
+      }
+
+      function phonemesFromUnlockedBy(unlockedBy) {
+        if (!unlockedBy || typeof unlockedBy !== "string") return [];
+        return unlockedBy.split(";").map((p) => p.trim()).filter(Boolean);
+      }
+
+      function getSoundsOnPage(words) {
+        const set = new Set();
+        for (const w of words) {
+          for (const p of phonemesFromUnlockedBy(w.unlockedBy)) set.add(p);
+        }
+        return Array.from(set).sort();
+      }
+
+      function wordIsCovered(word, known) {
+        if (word.alreadyPronounceable) return true;
+        const needs = phonemesFromUnlockedBy(word.unlockedBy);
+        if (needs.length === 0) return true;
+        return needs.every((p) => known.has(p));
+      }
+
+      function coveragePct(words, known) {
+        if (!words.length) return 0;
+        const covered = words.filter((w) => wordIsCovered(w, known)).length;
+        return Math.round((covered / words.length) * 100);
+      }
+
+      function renderCoverage(words) {
+        const container = document.getElementById("coverage-container");
+        const pctEl = document.getElementById("coverage-pct");
+        const listEl = document.getElementById("phoneme-list");
+        if (!words.length) {
+          container.style.display = "none";
+          return;
+        }
+        const sounds = getSoundsOnPage(words);
+        if (sounds.length === 0) {
+          pctEl.textContent = "100%";
+          container.style.display = "block";
+          listEl.innerHTML = "<span class=\"small\">All words use sounds you already have.</span>";
+          return;
+        }
+        listEl.innerHTML = "";
+        for (const p of sounds) {
+          const label = document.createElement("label");
+          const cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.dataset.phoneme = p;
+          cb.checked = knownPhonemes.has(p);
+          cb.addEventListener("change", () => {
+            if (cb.checked) knownPhonemes.add(p);
+            else knownPhonemes.delete(p);
+            pctEl.textContent = coveragePct(words, knownPhonemes) + "%";
+          });
+          label.appendChild(cb);
+          label.appendChild(document.createTextNode("/" + p + "/ I already know this"));
+          listEl.appendChild(label);
+        }
+        pctEl.textContent = coveragePct(words, knownPhonemes) + "%";
+        container.style.display = "block";
+      }
+
+      async function analyze() {
+        const text = inputEl.value.trim();
+        clearResults();
+
+        if (!text) {
+          setStatus("Please paste some text first.", true);
+          return;
+        }
+
+        analyzeBtn.disabled = true;
+        setStatus("Analyzing…", false);
+
+        try {
+          // Use same origin when served from your domain; localhost when opening file locally
+const apiBase = (window.location.protocol !== "file:" && window.location.host)
+  ? window.location.origin
+  : "http://127.0.0.1:8000";
+const response = await fetch(apiBase + "/analyze-text", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text }),
+          });
+
+          if (!response.ok) {
+            const data = await response.json().catch(() => ({}));
+            const detail = data.detail || response.statusText;
+            throw new Error(detail);
+          }
+
+          const data = await response.json();
+          const words = data.words || [];
+          lastResults = words;
+          renderTable(words);
+          renderCoverage(words);
+
+          if (words.length === 0) {
+            setStatus("No candidate vocabulary found.", false);
+            downloadBtn.disabled = true;
+          } else {
+            setStatus(`Found ${words.length} words.`, false);
+            downloadBtn.disabled = false;
+          }
+        } catch (err) {
+          console.error(err);
+          setStatus(`Error: ${err.message || "Unable to analyze text."}`, true);
+          downloadBtn.disabled = true;
+        } finally {
+          analyzeBtn.disabled = false;
+        }
+      }
+
+      function renderTable(words) {
+        tbody.innerHTML = "";
+        for (const w of words) {
+          const tr = document.createElement("tr");
+          const tdWord = document.createElement("td");
+          tdWord.textContent = w.word;
+          const tdIpa = document.createElement("td");
+          tdIpa.textContent = w.ipa || "";
+          const tdResp = document.createElement("td");
+          tdResp.textContent = w.respelling || "";
+          const tdLocal = document.createElement("td");
+          tdLocal.textContent = w.localCount;
+          const tdRank = document.createElement("td");
+          tdRank.textContent = w.globalRank ?? "";
+          tdRank.className = "small";
+          const tdScore = document.createElement("td");
+          tdScore.textContent =
+            typeof w.score === "number" ? w.score.toFixed(3) : "";
+          tdScore.className = "small";
+
+          tr.appendChild(tdWord);
+          tr.appendChild(tdIpa);
+          tr.appendChild(tdResp);
+          tr.appendChild(tdLocal);
+          tr.appendChild(tdRank);
+          tr.appendChild(tdScore);
+          tbody.appendChild(tr);
+        }
+      }
+
+      function toCsvValue(v) {
+        if (v == null) return "";
+        const s = String(v);
+        if (s.includes(",") || s.includes('"') || s.includes("\n")) {
+          return '"' + s.replace(/"/g, '""') + '"';
+        }
+        return s;
+      }
+
+      function downloadCsv() {
+        if (!lastResults.length) return;
+        const headers = [
+          "word",
+          "ipa",
+          "respelling",
+          "localCount",
+          "globalRank",
+          "globalFreqPerMillion",
+          "score",
+          "alreadyPronounceable",
+          "unlockedBy",
+        ];
+        const lines = [];
+        lines.push(headers.join(","));
+        for (const w of lastResults) {
+          const row = [
+            w.word,
+            w.ipa,
+            w.respelling,
+            w.localCount,
+            w.globalRank,
+            w.globalFreqPerMillion,
+            typeof w.score === "number" ? w.score.toFixed(6) : "",
+            w.alreadyPronounceable,
+            w.unlockedBy,
+          ].map(toCsvValue);
+          lines.push(row.join(","));
+        }
+        const blob = new Blob([lines.join("\n")], {
+          type: "text/csv;charset=utf-8;",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "clearpronounce_vocab.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      analyzeBtn.addEventListener("click", analyze);
+      downloadBtn.addEventListener("click", downloadCsv);
+    </script>
+  </body>
+</html>
+

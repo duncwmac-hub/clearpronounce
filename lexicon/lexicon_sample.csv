@@ -1,0 +1,201 @@
+word,ipa,cmu_pron,phoneme_set,polish_respellings,pos,frequency_rank
+'bout,b aʊ t,B AW1 T,"{aʊ, b, t}",baut,,1
+'cause,k ʌ z,K AH0 Z,"{k, z, ʌ}",kaz,,2
+'course,k ɔ r s,K AO1 R S,"{k, r, s, ɔ}",kors,,3
+'cuse,k j u z,K Y UW1 Z,"{j, k, u, z}",kjuz,,4
+'em,ʌ m,AH0 M,"{m, ʌ}",am,,5
+'frisco,f r ɪ s k oʊ,F R IH1 S K OW0,"{f, k, oʊ, r, s, ɪ}",fryskoł,,6
+'gain,g ɛ n,G EH1 N,"{g, n, ɛ}",gen,,7
+'kay,k eɪ,K EY1,"{eɪ, k}",kej,,8
+'m,ʌ m,AH0 M,"{m, ʌ}",am,,9
+'n,ʌ n,AH0 N,"{n, ʌ}",an,,10
+'round,r aʊ n d,R AW1 N D,"{aʊ, d, n, r}",raund,,11
+'s,ɛ s,EH1 S,"{s, ɛ}",es,,12
+'til,t ɪ l,T IH1 L,"{l, t, ɪ}",tyl,,13
+'tis,t ɪ z,T IH1 Z,"{t, z, ɪ}",tyz,,14
+'twas,t w ʌ z,T W AH1 Z,"{t, w, z, ʌ}",tłaz,,15
+a,ʌ,AH0,{ʌ},a,,16
+a's,eɪ z,EY1 Z,"{eɪ, z}",ejz,,18
+a.,eɪ,EY1,{eɪ},ej,,19
+a.'s,eɪ z,EY1 Z,"{eɪ, z}",ejz,,20
+a.d.,eɪ d i,EY2 D IY1,"{d, eɪ, i}",ejdi,,21
+a.m.,eɪ ɛ m,EY2 EH1 M,"{eɪ, m, ɛ}",ejem,,22
+a.s,eɪ z,EY1 Z,"{eɪ, z}",ejz,,23
+aaa,t r ɪ p ʌ l eɪ,T R IH2 P AH0 L EY1,"{eɪ, l, p, r, t, ɪ, ʌ}",trypalej,,24
+aaberg,ɑ b ɝ g,AA1 B ER0 G,"{b, g, ɑ, ɝ}",aberg,,25
+aachen,ɑ k ʌ n,AA1 K AH0 N,"{k, n, ɑ, ʌ}",akan,,26
+aachener,ɑ k ʌ n ɝ,AA1 K AH0 N ER0,"{k, n, ɑ, ɝ, ʌ}",akaner,,27
+aaker,ɑ k ɝ,AA1 K ER0,"{k, ɑ, ɝ}",aker,,28
+aalborg,"ɔ l b ɔ r g <#> <place,> <danish>","AO1 L B AO0 R G # place, danish","{<#>, <danish>, <place,>, b, g, l, r, ɔ}","olborg<#><place,><danish>",,29
+aalburg,"æ l b ɝ g <#> <place,> <dutch>","AE1 L B ER0 G # place, dutch","{<#>, <dutch>, <place,>, b, g, l, æ, ɝ}","elberg<#><place,><dutch>",,31
+aalen,"æ l ʌ n <#> <place,> <german>","AE1 L AH0 N # place, german","{<#>, <german>, <place,>, l, n, æ, ʌ}","elan<#><place,><german>",,32
+aaliyah,ɑ l i ɑ,AA2 L IY1 AA2,"{i, l, ɑ}",alia,,34
+aalseth,ɑ l s ɛ θ,AA1 L S EH0 TH,"{l, s, ɑ, ɛ, θ}",alseθ,,35
+aalsmeer,"ɑ l s m ɪ r <#> <place,> <dutch>","AA1 L S M IH0 R # place, dutch","{<#>, <dutch>, <place,>, l, m, r, s, ɑ, ɪ}","alsmyr<#><place,><dutch>",,36
+aalto,"ɑ l t oʊ <#> <name,> <finnish>","AA1 L T OW2 # name, finnish","{<#>, <finnish>, <name,>, l, oʊ, t, ɑ}","altoł<#><name,><finnish>",,37
+aamodt,ɑ m ʌ t,AA1 M AH0 T,"{m, t, ɑ, ʌ}",amat,,38
+aancor,ɑ n k ɔ r,AA1 N K AO2 R,"{k, n, r, ɑ, ɔ}",ankor,,39
+aardema,ɑ r d ɛ m ʌ,AA0 R D EH1 M AH0,"{d, m, r, ɑ, ɛ, ʌ}",ardema,,40
+aardvark,ɑ r d v ɑ r k,AA1 R D V AA2 R K,"{d, k, r, v, ɑ}",ardwark,,41
+aardvarks,ɑ r d v ɑ r k s,AA1 R D V AA2 R K S,"{d, k, r, s, v, ɑ}",ardwarks,,42
+aargh,ɑ r g,AA1 R G,"{g, r, ɑ}",arg,,43
+aarhus,ɑ h u s,AA2 HH UW1 S,"{h, s, u, ɑ}",ahus,,44
+aaron,ɛ r ʌ n,EH1 R AH0 N,"{n, r, ɛ, ʌ}",eran,,45
+aaron's,ɛ r ʌ n z,EH1 R AH0 N Z,"{n, r, z, ɛ, ʌ}",eranz,,46
+aarons,ɛ r ʌ n z,EH1 R AH0 N Z,"{n, r, z, ɛ, ʌ}",eranz,,47
+aaronson,ɛ r ʌ n s ʌ n,EH1 R AH0 N S AH0 N,"{n, r, s, ɛ, ʌ}",eransan,,48
+aaronson's,ɛ r ʌ n s ʌ n z,EH1 R AH0 N S AH0 N Z,"{n, r, s, z, ɛ, ʌ}",eransanz,,50
+aarti,ɑ r t i,AA1 R T IY2,"{i, r, t, ɑ}",arti,,52
+aase,ɑ s,AA1 S,"{s, ɑ}",as,,53
+aasen,ɑ s ʌ n,AA1 S AH0 N,"{n, s, ɑ, ʌ}",asan,,54
+ab,æ b,AE1 B,"{b, æ}",eb,,55
+aba,eɪ b i eɪ,EY2 B IY2 EY1,"{b, eɪ, i}",ejbiej,,57
+ababa,ʌ b ɑ b ʌ,AH0 B AA1 B AH0,"{b, ɑ, ʌ}",ababa,,58
+abacha,æ b ʌ k ʌ,AE1 B AH0 K AH0,"{b, k, æ, ʌ}",ebaka,,60
+aback,ʌ b æ k,AH0 B AE1 K,"{b, k, æ, ʌ}",abek,,61
+abaco,æ b ʌ k oʊ,AE1 B AH0 K OW2,"{b, k, oʊ, æ, ʌ}",ebakoł,,62
+abacus,æ b ʌ k ʌ s,AE1 B AH0 K AH0 S,"{b, k, s, æ, ʌ}",ebakas,,63
+abad,ʌ b ɑ d,AH0 B AA1 D,"{b, d, ɑ, ʌ}",abad,,64
+abadaka,ʌ b æ d ʌ k ʌ,AH0 B AE1 D AH0 K AH0,"{b, d, k, æ, ʌ}",abedaka,,65
+abadi,ʌ b æ d i,AH0 B AE1 D IY0,"{b, d, i, æ, ʌ}",abedi,,66
+abadie,ʌ b æ d i,AH0 B AE1 D IY0,"{b, d, i, æ, ʌ}",abedi,,67
+abair,ʌ b ɛ r,AH0 B EH1 R,"{b, r, ɛ, ʌ}",aber,,68
+abalkin,ʌ b ɑ l k ɪ n,AH0 B AA1 L K IH0 N,"{b, k, l, n, ɑ, ɪ, ʌ}",abalkyn,,69
+abalone,æ b ʌ l oʊ n i,AE2 B AH0 L OW1 N IY0,"{b, i, l, n, oʊ, æ, ʌ}",ebalołni,,70
+abalones,æ b ʌ l oʊ n i z,AE2 B AH0 L OW1 N IY0 Z,"{b, i, l, n, oʊ, z, æ, ʌ}",ebalołniz,,71
+abalos,ɑ b ɑ l oʊ z,AA0 B AA1 L OW0 Z,"{b, l, oʊ, z, ɑ}",abalołz,,72
+abandon,ʌ b æ n d ʌ n,AH0 B AE1 N D AH0 N,"{b, d, n, æ, ʌ}",abendan,,73
+abandoned,ʌ b æ n d ʌ n d,AH0 B AE1 N D AH0 N D,"{b, d, n, æ, ʌ}",abendand,,74
+abandoning,ʌ b æ n d ʌ n ɪ ŋ,AH0 B AE1 N D AH0 N IH0 NG,"{b, d, n, æ, ŋ, ɪ, ʌ}",abendanyŋ,,75
+abandonment,ʌ b æ n d ʌ n m ʌ n t,AH0 B AE1 N D AH0 N M AH0 N T,"{b, d, m, n, t, æ, ʌ}",abendanmant,,76
+abandonments,ʌ b æ n d ʌ n m ʌ n t s,AH0 B AE1 N D AH0 N M AH0 N T S,"{b, d, m, n, s, t, æ, ʌ}",abendanmants,,77
+abandons,ʌ b æ n d ʌ n z,AH0 B AE1 N D AH0 N Z,"{b, d, n, z, æ, ʌ}",abendanz,,78
+abanto,ʌ b æ n t oʊ,AH0 B AE1 N T OW0,"{b, n, oʊ, t, æ, ʌ}",abentoł,,79
+abarca,ʌ b ɑ r k ʌ,AH0 B AA1 R K AH0,"{b, k, r, ɑ, ʌ}",abarka,,80
+abare,ɑ b ɑ r i,AA0 B AA1 R IY0,"{b, i, r, ɑ}",abari,,81
+abascal,æ b ʌ s k ʌ l,AE1 B AH0 S K AH0 L,"{b, k, l, s, æ, ʌ}",ebaskal,,82
+abash,ʌ b æ ʃ,AH0 B AE1 SH,"{b, æ, ʃ, ʌ}",abeś,,83
+abashed,ʌ b æ ʃ t,AH0 B AE1 SH T,"{b, t, æ, ʃ, ʌ}",abeśt,,84
+abasia,ʌ b eɪ ʒ j ʌ,AH0 B EY1 ZH Y AH0,"{b, eɪ, j, ʌ, ʒ}",abejżja,,85
+abate,ʌ b eɪ t,AH0 B EY1 T,"{b, eɪ, t, ʌ}",abejt,,86
+abated,ʌ b eɪ t ɪ d,AH0 B EY1 T IH0 D,"{b, d, eɪ, t, ɪ, ʌ}",abejtyd,,87
+abatement,ʌ b eɪ t m ʌ n t,AH0 B EY1 T M AH0 N T,"{b, eɪ, m, n, t, ʌ}",abejtmant,,88
+abatements,ʌ b eɪ t m ʌ n t s,AH0 B EY1 T M AH0 N T S,"{b, eɪ, m, n, s, t, ʌ}",abejtmants,,89
+abates,ʌ b eɪ t s,AH0 B EY1 T S,"{b, eɪ, s, t, ʌ}",abejts,,90
+abating,ʌ b eɪ t ɪ ŋ,AH0 B EY1 T IH0 NG,"{b, eɪ, t, ŋ, ɪ, ʌ}",abejtyŋ,,91
+abattoir,æ b ʌ t w ɑ r,AE2 B AH0 T W AA1 R,"{b, r, t, w, æ, ɑ, ʌ}",ebatłar,,92
+abba,æ b ʌ,AE1 B AH0,"{b, æ, ʌ}",eba,,93
+abbado,ʌ b ɑ d oʊ,AH0 B AA1 D OW0,"{b, d, oʊ, ɑ, ʌ}",abadoł,,94
+abbas,ʌ b ɑ s,AH0 B AA1 S,"{b, s, ɑ, ʌ}",abas,,95
+abbasi,ɑ b ɑ s i,AA0 B AA1 S IY0,"{b, i, s, ɑ}",abasi,,96
+abbate,ɑ b eɪ t,AA1 B EY0 T,"{b, eɪ, t, ɑ}",abejt,,97
+abbatiello,ɑ b ɑ t i ɛ l oʊ,AA0 B AA0 T IY0 EH1 L OW0,"{b, i, l, oʊ, t, ɑ, ɛ}",abatieloł,,98
+abbe,æ b i,AE1 B IY0,"{b, i, æ}",ebi,,99
+abbenhaus,æ b ʌ n h aʊ s,AE1 B AH0 N HH AW2 S,"{aʊ, b, h, n, s, æ, ʌ}",ebanhaus,,101
+abbett,ʌ b ɛ t,AH0 B EH1 T,"{b, t, ɛ, ʌ}",abet,,102
+abbeville,æ b v ɪ l,AE1 B V IH0 L,"{b, l, v, æ, ɪ}",ebwyl,,103
+abbey,æ b i,AE1 B IY0,"{b, i, æ}",ebi,,104
+abbey's,æ b i z,AE1 B IY0 Z,"{b, i, z, æ}",ebiz,,105
+abbie,æ b i,AE1 B IY0,"{b, i, æ}",ebi,,106
+abbitt,æ b ɪ t,AE1 B IH0 T,"{b, t, æ, ɪ}",ebyt,,107
+abbot,æ b ʌ t,AE1 B AH0 T,"{b, t, æ, ʌ}",ebat,,108
+abbotstown,æ b ʌ t s t aʊ n,AE1 B AH0 T S T AW1 N,"{aʊ, b, n, s, t, æ, ʌ}",ebatstaun,,109
+abbott,æ b ʌ t,AE1 B AH0 T,"{b, t, æ, ʌ}",ebat,,110
+abbott's,æ b ʌ t s,AE1 B AH0 T S,"{b, s, t, æ, ʌ}",ebats,,111
+abbottstown,æ b ʌ t s t aʊ n,AE1 B AH0 T S T AW1 N,"{aʊ, b, n, s, t, æ, ʌ}",ebatstaun,,112
+abboud,ʌ b u d,AH0 B UW1 D,"{b, d, u, ʌ}",abud,,113
+abbreviate,ʌ b r i v i eɪ t,AH0 B R IY1 V IY0 EY2 T,"{b, eɪ, i, r, t, v, ʌ}",abriwiejt,,115
+abbreviated,ʌ b r i v i eɪ t ɪ d,AH0 B R IY1 V IY0 EY2 T IH0 D,"{b, d, eɪ, i, r, t, v, ɪ, ʌ}",abriwiejtyd,,116
+abbreviates,ʌ b r i v i eɪ t s,AH0 B R IY1 V IY0 EY2 T S,"{b, eɪ, i, r, s, t, v, ʌ}",abriwiejts,,117
+abbreviating,ʌ b r i v i eɪ t ɪ ŋ,AH0 B R IY1 V IY0 EY2 T IH0 NG,"{b, eɪ, i, r, t, v, ŋ, ɪ, ʌ}",abriwiejtyŋ,,118
+abbreviation,ʌ b r i v i eɪ ʃ ʌ n,AH0 B R IY2 V IY0 EY1 SH AH0 N,"{b, eɪ, i, n, r, v, ʃ, ʌ}",abriwiejśan,,119
+abbreviations,ʌ b r i v i eɪ ʃ ʌ n z,AH0 B R IY2 V IY0 EY1 SH AH0 N Z,"{b, eɪ, i, n, r, v, z, ʃ, ʌ}",abriwiejśanz,,120
+abbruzzese,ɑ b r u t s eɪ z i,AA0 B R UW0 T S EY1 Z IY0,"{b, eɪ, i, r, s, t, u, z, ɑ}",abrutsejzi,,121
+abbs,æ b z,AE1 B Z,"{b, z, æ}",ebz,,122
+abby,æ b i,AE1 B IY0,"{b, i, æ}",ebi,,123
+abc,eɪ b i s i,EY1 B IY2 S IY2,"{b, eɪ, i, s}",ejbisi,,124
+abc's,eɪ b i s i z,EY1 B IY2 S IY2 Z,"{b, eɪ, i, s, z}",ejbisiz,,125
+abco,æ b k oʊ,AE1 B K OW0,"{b, k, oʊ, æ}",ebkoł,,126
+abcotek,æ b k oʊ t ɛ k,AE1 B K OW0 T EH2 K,"{b, k, oʊ, t, æ, ɛ}",ebkołtek,,127
+abcs,eɪ b i s i z,EY1 B IY2 S IY2 Z,"{b, eɪ, i, s, z}",ejbisiz,,128
+abd,eɪ b i d i,EY2 B IY2 D IY1,"{b, d, eɪ, i}",ejbidi,,129
+abdalla,æ b d æ l ʌ,AE2 B D AE1 L AH0,"{b, d, l, æ, ʌ}",ebdela,,130
+abdallah,æ b d æ l ʌ,AE2 B D AE1 L AH0,"{b, d, l, æ, ʌ}",ebdela,,131
+abdel,æ b d ɛ l,AE1 B D EH2 L,"{b, d, l, æ, ɛ}",ebdel,,132
+abdella,æ b d ɛ l ʌ,AE2 B D EH1 L AH0,"{b, d, l, æ, ɛ, ʌ}",ebdela,,133
+abdicate,æ b d ʌ k eɪ t,AE1 B D AH0 K EY2 T,"{b, d, eɪ, k, t, æ, ʌ}",ebdakejt,,134
+abdicated,æ b d ʌ k eɪ t ɪ d,AE1 B D AH0 K EY2 T IH0 D,"{b, d, eɪ, k, t, æ, ɪ, ʌ}",ebdakejtyd,,135
+abdicates,æ b d ʌ k eɪ t s,AE1 B D AH0 K EY2 T S,"{b, d, eɪ, k, s, t, æ, ʌ}",ebdakejts,,136
+abdicating,æ b d ɪ k eɪ t ɪ ŋ,AE1 B D IH0 K EY2 T IH0 NG,"{b, d, eɪ, k, t, æ, ŋ, ɪ}",ebdykejtyŋ,,137
+abdication,æ b d ɪ k eɪ ʃ ʌ n,AE2 B D IH0 K EY1 SH AH0 N,"{b, d, eɪ, k, n, æ, ɪ, ʃ, ʌ}",ebdykejśan,,138
+abdnor,æ b d n ɝ,AE1 B D N ER0,"{b, d, n, æ, ɝ}",ebdner,,139
+abdo,æ b d oʊ,AE1 B D OW0,"{b, d, oʊ, æ}",ebdoł,,140
+abdollah,æ b d ɑ l ʌ,AE2 B D AA1 L AH0,"{b, d, l, æ, ɑ, ʌ}",ebdala,,141
+abdomen,æ b d oʊ m ʌ n,AE0 B D OW1 M AH0 N,"{b, d, m, n, oʊ, æ, ʌ}",ebdołman,,142
+abdominal,æ b d ɑ m ʌ n ʌ l,AE0 B D AA1 M AH0 N AH0 L,"{b, d, l, m, n, æ, ɑ, ʌ}",ebdamanal,,144
+abduct,æ b d ʌ k t,AE0 B D AH1 K T,"{b, d, k, t, æ, ʌ}",ebdakt,,146
+abducted,æ b d ʌ k t ɪ d,AE0 B D AH1 K T IH0 D,"{b, d, k, t, æ, ɪ, ʌ}",ebdaktyd,,147
+abductee,æ b d ʌ k t i,AE0 B D AH2 K T IY1,"{b, d, i, k, t, æ, ʌ}",ebdakti,,149
+abductees,æ b d ʌ k t i z,AE0 B D AH2 K T IY1 Z,"{b, d, i, k, t, z, æ, ʌ}",ebdaktiz,,150
+abducting,æ b d ʌ k t ɪ ŋ,AE0 B D AH1 K T IH0 NG,"{b, d, k, t, æ, ŋ, ɪ, ʌ}",ebdaktyŋ,,151
+abduction,æ b d ʌ k ʃ ʌ n,AE0 B D AH1 K SH AH0 N,"{b, d, k, n, æ, ʃ, ʌ}",ebdakśan,,153
+abductions,æ b d ʌ k ʃ ʌ n z,AE0 B D AH1 K SH AH0 N Z,"{b, d, k, n, z, æ, ʃ, ʌ}",ebdakśanz,,155
+abductor,æ b d ʌ k t ɝ,AE0 B D AH1 K T ER0,"{b, d, k, t, æ, ɝ, ʌ}",ebdakter,,157
+abductors,æ b d ʌ k t ɝ z,AE0 B D AH1 K T ER0 Z,"{b, d, k, t, z, æ, ɝ, ʌ}",ebdakterz,,159
+abducts,æ b d ʌ k t s,AE0 B D AH1 K T S,"{b, d, k, s, t, æ, ʌ}",ebdakts,,161
+abdul,æ b d u l,AE0 B D UW1 L,"{b, d, l, u, æ}",ebdul,,162
+abdulaziz,æ b d u l ʌ z i z,AE0 B D UW2 L AH0 Z IY1 Z,"{b, d, i, l, u, z, æ, ʌ}",ebdulaziz,,163
+abdulla,ɑ b d u l ʌ,AA0 B D UW1 L AH0,"{b, d, l, u, ɑ, ʌ}",abdula,,164
+abdullah,æ b d ʌ l ʌ,AE2 B D AH1 L AH0,"{b, d, l, æ, ʌ}",ebdala,,165
+abe,eɪ b,EY1 B,"{b, eɪ}",ejb,,166
+abed,ʌ b ɛ d,AH0 B EH1 D,"{b, d, ɛ, ʌ}",abed,,167
+abedi,ʌ b ɛ d i,AH0 B EH1 D IY0,"{b, d, i, ɛ, ʌ}",abedi,,168
+abee,ʌ b i,AH0 B IY1,"{b, i, ʌ}",abi,,169
+abel,eɪ b ʌ l,EY1 B AH0 L,"{b, eɪ, l, ʌ}",ejbal,,170
+abela,ɑ b ɛ l ʌ,AA0 B EH1 L AH0,"{b, l, ɑ, ɛ, ʌ}",abela,,171
+abelard,æ b ɪ l ɝ d,AE1 B IH0 L ER0 D,"{b, d, l, æ, ɝ, ɪ}",ebylerd,,172
+abele,ʌ b ɛ l,AH0 B EH1 L,"{b, l, ɛ, ʌ}",abel,,173
+abeles,ʌ b ɛ l z,AH0 B EH1 L Z,"{b, l, z, ɛ, ʌ}",abelz,,174
+abell,eɪ b ʌ l,EY1 B AH0 L,"{b, eɪ, l, ʌ}",ejbal,,176
+abella,ʌ b ɛ l ʌ,AH0 B EH1 L AH0,"{b, l, ɛ, ʌ}",abela,,177
+abeln,æ b ɪ l n,AE1 B IH0 L N,"{b, l, n, æ, ɪ}",ebyln,,178
+abelow,æ b ʌ l oʊ,AE1 B AH0 L OW0,"{b, l, oʊ, æ, ʌ}",ebaloł,,179
+abels,eɪ b ʌ l z,EY1 B AH0 L Z,"{b, eɪ, l, z, ʌ}",ejbalz,,180
+abelson,æ b ɪ l s ʌ n,AE1 B IH0 L S AH0 N,"{b, l, n, s, æ, ɪ, ʌ}",ebylsan,,181
+abend,æ b ɛ n d,AE1 B EH0 N D,"{b, d, n, æ, ɛ}",ebend,,182
+abendroth,æ b ɪ n d r ɔ θ,AE1 B IH0 N D R AO0 TH,"{b, d, n, r, æ, ɔ, ɪ, θ}",ebyndroθ,,184
+aber,eɪ b ɝ,EY1 B ER0,"{b, eɪ, ɝ}",ejber,,185
+abercrombie,æ b ɝ k r ɑ m b i,AE2 B ER0 K R AA1 M B IY0,"{b, i, k, m, r, æ, ɑ, ɝ}",eberkrambi,,186
+aberdeen,æ b ɝ d i n,AE1 B ER0 D IY2 N,"{b, d, i, n, æ, ɝ}",eberdin,,187
+aberford,eɪ b ɝ f ɝ d,EY1 B ER0 F ER0 D,"{b, d, eɪ, f, ɝ}",ejberferd,,188
+aberg,æ b ɝ g,AE1 B ER0 G,"{b, g, æ, ɝ}",eberg,,189
+aberle,æ b ɝ ʌ l,AE1 B ER0 AH0 L,"{b, l, æ, ɝ, ʌ}",eberal,,190
+abermin,æ b ɝ m ɪ n,AE1 B ER0 M IH0 N,"{b, m, n, æ, ɝ, ɪ}",ebermyn,,192
+abernathy,æ b ɝ n æ θ i,AE1 B ER0 N AE2 TH IY0,"{b, i, n, æ, ɝ, θ}",eberneθi,,193
+abernethy,æ b ɝ n ɛ θ i,AE1 B ER0 N EH2 TH IY0,"{b, i, n, æ, ɛ, ɝ, θ}",eberneθi,,194
+aberrant,æ b ɛ r ʌ n t,AE0 B EH1 R AH0 N T,"{b, n, r, t, æ, ɛ, ʌ}",eberant,,195
+aberration,æ b ɝ eɪ ʃ ʌ n,AE2 B ER0 EY1 SH AH0 N,"{b, eɪ, n, æ, ɝ, ʃ, ʌ}",eberejśan,,196
+aberrational,æ b ɝ eɪ ʃ ʌ n ʌ l,AE2 B ER0 EY1 SH AH0 N AH0 L,"{b, eɪ, l, n, æ, ɝ, ʃ, ʌ}",eberejśanal,,197
+aberrations,æ b ɝ eɪ ʃ ʌ n z,AE2 B ER0 EY1 SH AH0 N Z,"{b, eɪ, n, z, æ, ɝ, ʃ, ʌ}",eberejśanz,,198
+abert,æ b ɝ t,AE1 B ER0 T,"{b, t, æ, ɝ}",ebert,,199
+abet,ʌ b ɛ t,AH0 B EH1 T,"{b, t, ɛ, ʌ}",abet,,200
+abetted,ʌ b ɛ t ɪ d,AH0 B EH1 T IH0 D,"{b, d, t, ɛ, ɪ, ʌ}",abetyd,,201
+abetting,ʌ b ɛ t ɪ ŋ,AH0 B EH1 T IH0 NG,"{b, t, ŋ, ɛ, ɪ, ʌ}",abetyŋ,,202
+abex,eɪ b ɛ k s,EY1 B EH0 K S,"{b, eɪ, k, s, ɛ}",ejbeks,,203
+abeyance,ʌ b eɪ ʌ n s,AH0 B EY1 AH0 N S,"{b, eɪ, n, s, ʌ}",abejans,,204
+abeyta,ɑ b eɪ t ʌ,AA0 B EY1 T AH0,"{b, eɪ, t, ɑ, ʌ}",abejta,,205
+abhor,æ b h ɔ r,AE0 B HH AO1 R,"{b, h, r, æ, ɔ}",ebhor,,206
+abhorred,ʌ b h ɔ r d,AH0 B HH AO1 R D,"{b, d, h, r, ɔ, ʌ}",abhord,,207
+abhorrence,ʌ b h ɔ r ʌ n s,AH0 B HH AO1 R AH0 N S,"{b, h, n, r, s, ɔ, ʌ}",abhorans,,208
+abhorrent,æ b h ɔ r ʌ n t,AE0 B HH AO1 R AH0 N T,"{b, h, n, r, t, æ, ɔ, ʌ}",ebhorant,,209
+abhors,ʌ b h ɔ r z,AH0 B HH AO1 R Z,"{b, h, r, z, ɔ, ʌ}",abhorz,,210
+abiam,eɪ b i ʌ m,EY1 B IY0 AH0 M,"{b, eɪ, i, m, ʌ}",ejbiam,,211
+abiam's,eɪ b i ʌ m z,EY1 B IY0 AH0 M Z,"{b, eɪ, i, m, z, ʌ}",ejbiamz,,212
+abid,eɪ b ɪ d,EY1 B IH0 D,"{b, d, eɪ, ɪ}",ejbyd,,213
+abide,ʌ b aɪ d,AH0 B AY1 D,"{aɪ, b, d, ʌ}",abajd,,214
+abided,ʌ b aɪ d ɪ d,AH0 B AY1 D IH0 D,"{aɪ, b, d, ɪ, ʌ}",abajdyd,,215
+abides,ʌ b aɪ d z,AH0 B AY1 D Z,"{aɪ, b, d, z, ʌ}",abajdz,,216
+abiding,ʌ b aɪ d ɪ ŋ,AH0 B AY1 D IH0 NG,"{aɪ, b, d, ŋ, ɪ, ʌ}",abajdyŋ,,217
+abidjan,æ b ɪ dʒ ɑ n,AE0 B IH0 JH AA1 N,"{b, dʒ, n, æ, ɑ, ɪ}",ebydżan,,218
+abie,æ b i,AE1 B IY0,"{b, i, æ}",ebi,,219
+abigail,æ b ʌ g eɪ l,AE1 B AH0 G EY2 L,"{b, eɪ, g, l, æ, ʌ}",ebagejl,,220

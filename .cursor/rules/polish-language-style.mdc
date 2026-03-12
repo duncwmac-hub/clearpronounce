@@ -1,0 +1,17 @@
+---
+description: Use simple, direct Polish for user-facing copy; avoid jargon and technical terms.
+alwaysApply: true
+---
+
+# Language style for Polish users
+
+When writing or generating **text for Polish users** (in-app copy, instructions, pronunciation hints, onboarding, help text):
+
+1. **Use everyday Polish** – short, clear sentences. No academic or technical vocabulary.
+2. **Avoid linguistic jargon** – do not use *fonem*, *transkrypcja*, *IPA*, etc. unless the product has already introduced them in simple language.
+3. **Pronunciation hints:** use natural instructions:
+   - **"Powiedz:"** or **"Wymawiaj:"** (e.g. *Powiedz: KLIR-pronałns*)
+   - Do **not** use *czyt.* or raw technical notation for learners.
+4. **Tone:** Conversational, confident, practical. The user should feel the system is simple and obvious, not academic.
+
+Full style guide: `docs/language_style_polish.md`.

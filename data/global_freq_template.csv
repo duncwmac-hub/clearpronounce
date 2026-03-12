@@ -1,0 +1,7 @@
+word,rank,freq_per_million
+# Fill this file with a general English frequency list, e.g. from wordfreq or another corpus.
+# Example rows:
+# the,1,52000
+# be,2,45000
+# have,10,25000
+
