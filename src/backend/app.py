@@ -13,6 +13,8 @@ from starlette.responses import FileResponse
 from src.core.frequency_scoring import compute_scores, load_global_freq
 from src.core.lexicon_service import LexEntry, load_lexicon
 from src.core.text_processing import vocab_from_text
+from lexicon.ingest_cmudict import ARPABET_TO_IPA, strip_stress
+from lexicon.respelling_rules import load_respelling_rules
 
 
 app = FastAPI(title="ClearPronounce API", version="0.1.0")
@@ -31,6 +33,52 @@ app.add_middleware(
 GLOBAL_FREQ: Dict[str, Tuple[int, float]] = {}
 LEXICON: Dict[str, LexEntry] = {}
 RESPELLING_OVERRIDES: Dict[str, str] = {}
+RESP_RULES = load_respelling_rules()
+
+
+def _generate_stressed_respelling(ipa: str, cmu_pron: str) -> str:
+    """Generate a respelling string with the primary-stress chunk bolded and capitalised.
+
+    This recomputes the respelling from IPA + rules (ignoring any manual overrides),
+    but keeps the plain respelling field unchanged for CSV/export.
+    """
+    ipa = (ipa or "").strip()
+    cmu_pron = (cmu_pron or "").strip()
+    if not ipa or not cmu_pron:
+        return ""
+
+    phones_arpabet = cmu_pron.split()
+    primary_index = -1
+    for idx, p in enumerate(phones_arpabet):
+        if p and p[-1] == "1":
+            primary_index = idx
+            break
+    if primary_index < 0:
+        return ""
+
+    ipa_phones = [p for p in ipa.split() if p]
+    # Map ARPABET -> IPA bases to align indices if needed.
+    ipa_from_arpabet = []
+    for p in phones_arpabet:
+        base = strip_stress(p)
+        ipa_equiv = ARPABET_TO_IPA.get(base)
+        if ipa_equiv is None:
+            # Fallback: keep base so lengths still align as best we can.
+            ipa_equiv = base
+        ipa_from_arpabet.append(ipa_equiv)
+
+    if len(ipa_from_arpabet) != len(ipa_phones):
+        # If we can't safely align, bail out rather than mis-mark stress.
+        return ""
+
+    pieces: list[str] = []
+    for idx, phone in enumerate(ipa_phones):
+        rule = RESP_RULES.get(phone)
+        chunk = rule.default_letters if rule is not None else phone
+        if idx == primary_index:
+            chunk = f"<strong>{chunk.upper()}</strong>"
+        pieces.append(chunk)
+    return "".join(pieces)
 
 
 def init_resources(
@@ -59,6 +107,7 @@ class WordResult(BaseModel):
     score: float
     ipa: str = ""
     respelling: str = ""
+    respellingStressed: str = ""
     alreadyPronounceable: Optional[bool] = None
     unlockedBy: str = ""
 
@@ -195,6 +244,11 @@ def analyze_text(payload: AnalyzeRequest) -> AnalyzeResponse:
         entry = LEXICON.get(word)
         ipa = entry.ipa if entry else ""
         resp = RESPELLING_OVERRIDES.get(word.lower()) or (entry.respelling if entry else "")
+        resp_stressed = (
+            _generate_stressed_respelling(ipa, entry.cmu_pron)
+            if entry and entry.cmu_pron
+            else ""
+        )
         already = entry.already_pronounceable if entry else None
         unlocked = entry.unlocked_by if entry else ""
 
@@ -207,6 +261,7 @@ def analyze_text(payload: AnalyzeRequest) -> AnalyzeResponse:
                 score=score,
                 ipa=ipa,
                 respelling=resp,
+                respellingStressed=resp_stressed,
                 alreadyPronounceable=already,
                 unlockedBy=unlocked,
             )

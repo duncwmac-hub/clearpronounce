@@ -706,7 +706,11 @@ const response = await fetch(apiBase + "/analyze-text", {
           const tdIpa = document.createElement("td");
           tdIpa.textContent = w.ipa || "";
           const tdResp = document.createElement("td");
-          tdResp.textContent = w.respelling || "";
+          if (w.respellingStressed) {
+            tdResp.innerHTML = w.respellingStressed;
+          } else {
+            tdResp.textContent = w.respelling || "";
+          }
           const tdLocal = document.createElement("td");
           tdLocal.textContent = w.localCount;
           const tdRank = document.createElement("td");

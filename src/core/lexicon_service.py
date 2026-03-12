@@ -11,6 +11,7 @@ class LexEntry:
     word: str
     ipa: str
     respelling: str
+    cmu_pron: str = ""
     phoneme_set: str = ""
     already_pronounceable: Optional[bool] = None
     unlocked_by: str = ""
@@ -27,6 +28,7 @@ def load_lexicon(path: Path) -> Dict[str, LexEntry]:
                 continue
             ipa = (row.get("ipa") or "").strip()
             resp = (row.get("polish_respellings") or "").strip()
+            cmu_pron = (row.get("cmu_pron") or "").strip()
             phoneme_set = (row.get("phoneme_set") or "").strip()
             already_str = (row.get("already_pronounceable") or "").strip().lower()
             already: Optional[bool]
@@ -41,6 +43,7 @@ def load_lexicon(path: Path) -> Dict[str, LexEntry]:
                 word=word,
                 ipa=ipa,
                 respelling=resp,
+                cmu_pron=cmu_pron,
                 phoneme_set=phoneme_set,
                 already_pronounceable=already,
                 unlocked_by=unlocked_by,
