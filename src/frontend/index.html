@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>ClearPronounce – Pronunciation-aware vocab for Polish learners</title>
+    <title>ClearPronounce – Pronunciation guides for Polish learners of English</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href="https://clearpronounce.com/" />
     <meta property="og:url" content="https://clearpronounce.com/" />
-    <meta property="og:title" content="ClearPronounce – Pronunciation-aware vocab for Polish learners" />
-    <meta property="og:description" content="Paste text from your textbook or worksheet to get a pronunciation-aware vocabulary list for Polish learners of English." />
+    <meta property="og:title" content="ClearPronounce – Pronunciation guides for Polish learners of English" />
+    <meta property="og:description" content="Paste text from a textbook or worksheet. ClearPronounce finds words Polish learners often pronounce in a confusing way and shows simple pronunciation hints for class." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -309,35 +309,25 @@
     <header>
       <h1>ClearPronounce</h1>
       <p>
-        Paste text from your textbook or worksheet to get a pronunciation-aware
-        vocabulary list for Polish learners.
+        Pronunciation guides for Polish learners of English
+      </p>
+      <p class="small" style="margin-top: 0.5rem;">
+        Paste text from a textbook exercise or worksheet. ClearPronounce finds words Polish learners often pronounce in a confusing way and shows simple pronunciation hints you can use in class.
       </p>
     </header>
     <main>
       <div class="layout">
         <section class="panel">
-          <h2>1. Choose what you want help with</h2>
-          <div class="small" style="margin-bottom: 0.75rem;">
-            Pick the option that feels closest to your situation. We’ll still ask for a short English text you actually use.
-          </div>
-          <div class="practice" style="margin-top: 0.5rem; padding-top: 0; border-top: none;">
-            <div id="variant-options" class="practice-options"></div>
-          </div>
-          <h2 style="margin-top: 1.25rem;">2. Paste your text</h2>
+          <h2>Step 1: Paste your text</h2>
           <p class="small">
-            Use your phone’s OCR (Google Lens / iOS Live Text) or your
-            textbook’s digital edition, then paste the exercise text here.
-            We only use this to derive a word list; the raw text isn’t stored.
-          </p>
-          <p class="small">
-            <strong>Tip:</strong> Paste a short English paragraph from a textbook, email, or meeting notes, then click <strong>Analyze</strong>.
+            Paste text from a textbook exercise, worksheet, or reading passage. We only use it to build the guide; the raw text isn’t stored.
           </p>
           <textarea
             id="input-text"
-            placeholder="Paste exercise text here…"
+            placeholder="Paste text from a textbook exercise or worksheet…"
           ></textarea>
           <div class="controls">
-            <button id="analyze-btn" class="primary">Analyze</button>
+            <button id="analyze-btn" class="primary">Step 2: Analyze</button>
             <button id="download-btn" class="secondary" disabled>
               Download CSV
             </button>
@@ -345,14 +335,13 @@
           </div>
         </section>
         <section class="panel">
-          <h2>2. Vocab with pronunciation</h2>
+          <h2>Step 3: See the pronunciation guide</h2>
           <p class="small">
-            Ranked by general English frequency, how often it appears in this
-            text, and how strongly it belongs to this topic.
+            These words in your text contain sounds that are often difficult for Polish learners of English. Use the hints in class to pre-teach or correct pronunciation.
           </p>
           <div id="coverage-container" class="coverage-bar" style="display: none;">
-            <div>You can clearly use <span id="coverage-pct" class="pct">0%</span> of these words.</div>
-            <p class="small" style="margin: 0.5rem 0 0 0;">Tick sounds you already know; coverage updates.</p>
+            <div>About <span id="coverage-pct" class="pct">0%</span> of these words use sounds your Polish learners may already have.</div>
+            <p class="small" style="margin: 0.5rem 0 0 0;">Tick sounds your class is comfortable with; the percentage updates.</p>
             <div id="phoneme-list" class="phoneme-list"></div>
           </div>
           <div id="results-container">
@@ -371,9 +360,9 @@
             </table>
           </div>
           <div id="practice-panel" class="practice" style="display: none;">
-            <h3>3. Practice words you can already say</h3>
+            <h3>Quick practice for class</h3>
             <p class="small">
-              We’ll pick words this text thinks are clearly within your reach. Choose the best pronunciation helper for each one.
+              Words your learners can likely already say clearly. Use the multiple-choice game to check they match the correct pronunciation hint.
             </p>
             <div id="practice-content">
               <button id="practice-start" class="secondary">Start practice</button>
@@ -383,8 +372,8 @@
       </div>
       <section class="support" aria-label="Support ClearPronounce">
         <p>
-          If ClearPronounce helps you or your students, consider supporting its development.
-          One-time or recurring—every bit helps keep it free for learners.
+          If ClearPronounce helps you prepare lessons, consider supporting its development.
+          One-time or recurring—every bit helps keep it free for teachers.
         </p>
         <a href="https://buy.stripe.com/cNi6oIdgiaNWatd3Kles000" target="_blank" rel="noopener noreferrer" class="support-btn">
           Support ClearPronounce
@@ -392,7 +381,7 @@
       </section>
     </main>
     <footer>
-      ClearPronounce · Pronunciation-aware vocab for Polish learners of English
+      ClearPronounce · Pronunciation guides for Polish learners of English
       · <a href="mailto:duncan@clearpronounce.com" style="color: inherit; text-decoration: underline;">duncan@clearpronounce.com</a>
     </footer>
     <script>
@@ -404,7 +393,6 @@
       const practicePanel = document.getElementById("practice-panel");
       const practiceContent = document.getElementById("practice-content");
       const practiceStartBtn = document.getElementById("practice-start");
-      const variantOptionsEl = document.getElementById("variant-options");
 
       let lastResults = [];
       const knownPhonemes = new Set();
@@ -634,7 +622,7 @@
           });
           label.appendChild(cb);
           label.appendChild(
-            document.createTextNode("/" + p + "/ I’m OK with this sound")
+            document.createTextNode("/" + p + "/ My learners are OK with this sound")
           );
           listEl.appendChild(label);
         }
@@ -784,60 +772,6 @@ const response = await fetch(apiBase + "/analyze-text", {
 
       analyzeBtn.addEventListener("click", analyze);
       downloadBtn.addEventListener("click", downloadCsv);
-
-      // Track which promise users clicked on.
-      async function trackVariant(variant) {
-        try {
-          await fetch("/track-variant", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ variant }),
-          });
-        } catch (_e) {
-          // Swallow tracking errors; they should never block usage.
-        }
-      }
-
-      // Build and randomize the variant buttons so we can see which promise users pick,
-      // without order bias.
-      const VARIANTS = [
-        {
-          id: "email_meeting",
-          label: "I want to sound clearer in my emails or meetings",
-          icon: "✅",
-        },
-        {
-          id: "top_words",
-          label: "I want to see which words I probably say in a confusing way",
-          icon: "🔍",
-        },
-        {
-          id: "unit_zero",
-          label: "I’m using a textbook/unit and want a quick pronunciation guide",
-          icon: "📘",
-        },
-      ];
-
-      function renderVariantButtons() {
-        const shuffled = shuffle(VARIANTS);
-        variantOptionsEl.innerHTML = "";
-        shuffled.forEach((v) => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "secondary";
-          btn.dataset.variant = v.id;
-          btn.textContent = `${v.icon} ${v.label}`;
-          btn.addEventListener("click", () => {
-            trackVariant(v.id);
-            setStatus(
-              "Got it. Paste a short English text you actually use, then click Analyze."
-            );
-          });
-          variantOptionsEl.appendChild(btn);
-        });
-      }
-
-      renderVariantButtons();
     </script>
   </body>
 </html>
