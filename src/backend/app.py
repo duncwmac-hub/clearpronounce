@@ -49,6 +49,8 @@ def _generate_stressed_respelling(ipa: str, cmu_pron: str) -> str:
         return ""
 
     phones_arpabet = cmu_pron.split()
+
+    # Find primary-stress phone index in ARPABET.
     primary_index = -1
     for idx, p in enumerate(phones_arpabet):
         if p and p[-1] == "1":
@@ -56,6 +58,60 @@ def _generate_stressed_respelling(ipa: str, cmu_pron: str) -> str:
             break
     if primary_index < 0:
         return ""
+
+    # Identify syllable nuclei (vowels) by ARPABET base symbol.
+    vowel_bases = {
+        "IY",
+        "IH",
+        "EY",
+        "EH",
+        "AE",
+        "AA",
+        "AO",
+        "UH",
+        "UW",
+        "AH",
+        "ER",
+        "AY",
+        "OY",
+        "AW",
+        "OW",
+    }
+    vowel_indices: list[int] = []
+    for idx, p in enumerate(phones_arpabet):
+        base = strip_stress(p)
+        if base in vowel_bases:
+            vowel_indices.append(idx)
+
+    if not vowel_indices:
+        return ""
+
+    # Map the primary-stress phone index to a syllable index.
+    primary_syllable_idx = -1
+    for s_idx, v_idx in enumerate(vowel_indices):
+        if v_idx == primary_index:
+            primary_syllable_idx = s_idx
+            break
+    if primary_syllable_idx < 0:
+        return ""
+
+    syllable_count = len(vowel_indices)
+
+    # Decide whether to highlight stress at all.
+    # - Do not highlight in monosyllables.
+    # - Do not highlight when stress is on the penultimate syllable.
+    do_highlight = True
+    if syllable_count == 1:
+        do_highlight = False
+    elif primary_syllable_idx == syllable_count - 2:
+        do_highlight = False
+
+    # Determine stressed syllable span in phone indices (inclusive).
+    stress_span_start = vowel_indices[primary_syllable_idx]
+    if primary_syllable_idx + 1 < syllable_count:
+        stress_span_end = vowel_indices[primary_syllable_idx + 1] - 1
+    else:
+        stress_span_end = len(phones_arpabet) - 1
 
     ipa_phones = [p for p in ipa.split() if p]
     # Map ARPABET -> IPA bases to align indices if needed.
@@ -80,7 +136,7 @@ def _generate_stressed_respelling(ipa: str, cmu_pron: str) -> str:
         # pre-stress schwa as a clearer full vowel for learners.
         if idx == 0 and idx < primary_index and phone == "ə":
             chunk = "a"
-        if idx == primary_index:
+        if do_highlight and stress_span_start <= idx <= stress_span_end:
             chunk = f"<strong>{chunk.upper()}</strong>"
         pieces.append(chunk)
     return "".join(pieces)
