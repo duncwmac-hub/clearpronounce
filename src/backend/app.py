@@ -12,8 +12,8 @@ from starlette.responses import FileResponse
 
 from src.core.frequency_scoring import compute_scores, load_global_freq
 from src.core.lexicon_service import LexEntry, load_lexicon
-from src.core.text_processing import vocab_from_text
-from lexicon.ingest_cmudict import ARPABET_TO_IPA, strip_stress
+from src.core.text_processing import vocab_from_text, normalise_token, DEFAULT_STOPWORDS
+from lexicon.ingest_cmudict import ARPABET_TO_IPA, strip_stress, load_cmudict
 from lexicon.respelling_rules import load_respelling_rules
 
 
@@ -35,6 +35,15 @@ LEXICON: Dict[str, LexEntry] = {}
 RESPELLING_OVERRIDES: Dict[str, str] = {}
 IPA_OVERRIDES: Dict[str, str] = {}
 RESP_RULES = load_respelling_rules()
+# All CMUdict pronunciation variants per lowercased word.
+CMU_VARIANTS: Dict[str, List[str]] = {}
+
+try:  # POS tagging is a must-have but should fail soft if model unavailable.
+    import spacy
+
+    NLP = spacy.load(os.environ.get("CP_SPACY_MODEL", "en_core_web_sm"))
+except Exception:  # pragma: no cover - spaCy/model may not be present in some environments.
+    NLP = None
 
 
 def _generate_stressed_respelling(ipa: str, cmu_pron: str) -> str:
@@ -151,7 +160,7 @@ def init_resources(
     This is mainly used in tests; a real deployment can load from CSVs
     in a startup event.
     """
-    global GLOBAL_FREQ, LEXICON
+    global GLOBAL_FREQ, LEXICON, CMU_VARIANTS
     GLOBAL_FREQ = dict(global_freq)
     LEXICON = dict(lexicon)
 
@@ -271,6 +280,18 @@ def load_resources_from_disk() -> None:
                     if w and ipa_override:
                         IPA_OVERRIDES[w] = ipa_override
 
+        # Load CMUdict variants so we can choose pronunciations per token later.
+        cmudict_path = Path(
+            os.environ.get(
+                "CP_CMUDICT_PATH",
+                str(data_dir / "CMUdict" / "cmudict.dict"),
+            )
+        )
+        if cmudict_path.exists():
+            CMU_VARIANTS = load_cmudict(cmudict_path)
+        else:
+            CMU_VARIANTS = {}
+
         # Enrich lexicon entries with pronounceability info vs Polish inventory.
         polish_inventory = _load_polish_inventory(polish_inventory_path)
         if polish_inventory:
@@ -301,8 +322,27 @@ def analyze_text(payload: AnalyzeRequest) -> AnalyzeResponse:
     if len(text) > 10_000:
         raise HTTPException(status_code=413, detail="Text is too long.")
 
+    # Build lemma counts (as before).
     counts = vocab_from_text(text)
     scored = compute_scores(counts, GLOBAL_FREQ or None)
+
+    # Very light POS awareness: map lemmas to dominant POS tags using spaCy,
+    # while preserving existing vocab_from_text behaviour.
+    lemma_pos: Dict[str, Dict[str, int]] = {}
+    if NLP is not None:
+        stop = set(DEFAULT_STOPWORDS)
+        doc = NLP(text)
+        for token in doc:
+            if not token.is_alpha:
+                continue
+            lemma = normalise_token(token.text)
+            if len(lemma) < 2 or lemma in stop:
+                continue
+            pos_tag = token.pos_ or token.tag_ or ""
+            if not pos_tag:
+                continue
+            lemma_pos.setdefault(lemma, {})
+            lemma_pos[lemma][pos_tag] = lemma_pos[lemma].get(pos_tag, 0) + 1
 
     results: List[WordResult] = []
     for word, local_count, rank, freq_pm, score in scored:
