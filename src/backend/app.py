@@ -38,11 +38,15 @@ RESP_RULES = load_respelling_rules()
 # All CMUdict pronunciation variants per lowercased word.
 CMU_VARIANTS: Dict[str, List[str]] = {}
 
-import spacy
+# POS tagging is conceptually a must-have, but in some deployment
+# environments (e.g. when the spaCy model is not installed yet) we need
+# to degrade gracefully rather than fail to start the service.
+try:  # pragma: no cover - protects environments without spaCy/model.
+    import spacy
 
-# POS tagging is a must-have: the service should not start if the model
-# cannot be loaded. The model name can be overridden via CP_SPACY_MODEL.
-NLP = spacy.load(os.environ.get("CP_SPACY_MODEL", "en_core_web_sm"))
+    NLP = spacy.load(os.environ.get("CP_SPACY_MODEL", "en_core_web_sm"))
+except Exception:
+    NLP = None
 
 
 def _generate_stressed_respelling(ipa: str, cmu_pron: str) -> str:
