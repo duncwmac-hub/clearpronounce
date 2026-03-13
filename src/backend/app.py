@@ -76,6 +76,10 @@ def _generate_stressed_respelling(ipa: str, cmu_pron: str) -> str:
     for idx, phone in enumerate(ipa_phones):
         rule = RESP_RULES.get(phone)
         chunk = rule.default_letters if rule is not None else phone
+        # For careful / teacher-facing respelling, treat a word-initial
+        # pre-stress schwa as a clearer full vowel for learners.
+        if idx == 0 and idx < primary_index and phone == "ə":
+            chunk = "a"
         if idx == primary_index:
             chunk = f"<strong>{chunk.upper()}</strong>"
         pieces.append(chunk)

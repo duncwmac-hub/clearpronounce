@@ -401,6 +401,7 @@
 
       // Polish inventory + clearly basic sounds we never want users to tick.
       const ALWAYS_KNOWN_PHONEMES = new Set([
+        // Polish consonant inventory (including affricates and postalveolars)
         "p",
         "b",
         "t",
@@ -430,16 +431,27 @@
         "dʐ",
         "tɕ",
         "dʑ",
+        "tʃ",
+        "ʃ",
+        "dʒ",
+        "ʒ",
+        // Vowels and diphthongs we treat as essentially Polish for this UI
         "i",
         "ɪ",
         "ɨ",
         "e",
+        "ɛ",
         "a",
+        "ɑ",
         "o",
+        "ɔ",
         "u",
+        "ʊ",
         "eɪ",
-        "tʃ",
-        "ʃ",
+        "aɪ",
+        "aʊ",
+        "oʊ",
+        "ɔɪ",
       ]);
 
       function setStatus(message, isError = false) {
