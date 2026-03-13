@@ -76,12 +76,12 @@ def load_frequency_ranks(path: Path) -> dict:
     return ranks
 
 
-def load_cmudict(path: Path) -> dict:
+def load_cmudict(path: Path) -> dict[str, list[str]]:
     """Load CMUdict-style file: WORD  PHON PHON ...
 
-    Returns word -> list of ARPABET strings (we keep only the first for now).
+    Returns word -> list of ARPABET strings (including all (2), (3) variants).
     """
-    mapping: dict[str, str] = {}
+    mapping: dict[str, list[str]] = {}
     with path.open(encoding="utf-8") as f:
         for line in f:
             line = line.strip()
@@ -89,13 +89,12 @@ def load_cmudict(path: Path) -> dict:
                 continue
             parts = line.split()
             word = parts[0]
-            # Strip possible (1), (2) variants.
+            # Strip possible (1), (2) from the key but keep all variants.
             if "(" in word:
                 word = word.split("(", 1)[0]
             word = word.lower()
             pron = " ".join(parts[1:])
-            if word not in mapping:
-                mapping[word] = pron
+            mapping.setdefault(word, []).append(pron)
     return mapping
 
 

@@ -77,9 +77,12 @@ def build_oxford_lexicon(
                 # Skip multi-word and hyphenated expressions in this first pass.
                 continue
 
-            cmu_pron = cmu.get(word)
-            if not cmu_pron:
+            variants = cmu.get(word)
+            if not variants:
                 continue
+            # For the static Oxford 3000 lexicon we keep the first CMU variant
+            # as the default; runtime code can choose others using POS.
+            cmu_pron = variants[0]
 
             ipa = arpabet_to_ipa(cmu_pron)
             phoneme_set = phoneme_set_from_ipa(ipa)
